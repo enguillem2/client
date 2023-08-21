@@ -1,20 +1,10 @@
-version: "3.4"
+version: '3.9'
+
 services:
-  vite_docker:
+  client:
     build: .
-    volumes:
-      - type: bind
-        source: ./
-        target: /srv/app
     ports:
-      - 8009:5137
-    working_dir: /srv/app
-    x-develop:
-      watch:
-        - action: sync
-          path: ./app
-          target: /srv/app
-          ignore:
-            - node_modules/
-        - action: rebuild
-          path: package.json
+      - 5173:5173
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
