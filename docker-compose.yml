@@ -7,7 +7,7 @@ services:
         source: ./
         target: /srv/app
     ports:
-      - 5137:5137
+      - 8009:5137
     working_dir: /srv/app
     x-develop:
       watch:
