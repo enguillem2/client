@@ -11,9 +11,13 @@ function TaskForm() {
       body: JSON.stringify({
         title,
         description
-      })
+      }),
+      headers:{
+        'Content-type':'application/json'
+      }
     })
-    console.log(res)
+    const dato= await res.json()
+    console.log(dato)
   }
   return (
     <div className="flex items-center justify-center h-[calc(100vh-10rem)]">
