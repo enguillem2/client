@@ -18,13 +18,7 @@ function HomePage() {
 
     let contentTasks = <p>No data..</p>;
     if (tasks.length > 0) {
-        contentTasks = <div>{
-            <ul>
-                {tasks.map((task) => {
-                    return <li>{task.title}</li>
-                })}
-            </ul>
-        }</div>
+        contentTasks = <TaskList tasks={tasks} />
     }
 
 
