@@ -13,27 +13,33 @@ function TaskForm() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     let url = "http://192.168.1.156:8008/api/tasks"
+
+    try{
+      if(params.id){
+        let url = `http://192.168.1.156:8008/api/tasks/${params.id}`
   
-    if(params.id){
-      let url = `http://192.168.1.156:8008/api/tasks/${params.id}`
+        //amb axios
+        const res = await axios.put(url, {
+          title,
+          description
+        })
+      }else{
+        let url = "http://192.168.1.156:8008/api/tasks"
+  
+        //amb axios
+        const res = await axios.post(url, {
+          title,
+          description
+        })
+      }
+      console.log("abans del reset")
+      e.target.reset()
+      navigate('/')
 
-      //amb axios
-      const res = await axios.put(url, {
-        title,
-        description
-      })
-    }else{
-      let url = "http://192.168.1.156:8008/api/tasks"
-
-      //amb axios
-      const res = await axios.post(url, {
-        title,
-        description
-      })
+    }catch(error){
+      console.log(error)
     }
-    console.log("abans del reset")
-    e.target.reset()
-    navigate('/')
+  
   }
 
   useEffect(()=>{
