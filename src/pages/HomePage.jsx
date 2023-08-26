@@ -24,17 +24,6 @@ function HomePage() {
 
 
 
-    // useEffect(() => {
-    //     async function fetchTasks() {
-    //         const res = await axios.get(url)
-    //         console.log("res",res.data)
-    //         setTasks(res.data)
-    //         console.log("taks",tasks)
-
-    //     }
-    //     fetchTasks()
-    // }, []);
-
     return (
         <>
             <h1>Tasks</h1>
