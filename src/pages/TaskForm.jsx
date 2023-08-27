@@ -2,9 +2,8 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
-import axios from "axios"
 
-import { fetchTask,fetchTasks, createTask, updateTask, deleteTask } from "../api/tasks";
+import { fetchTask, createTask, updateTask, deleteTask } from "../api/tasks";
 
 function TaskForm() {
   const navigate = useNavigate()
@@ -72,10 +71,7 @@ function TaskForm() {
             <button
               className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 rounded mt-5 px-4"
               onClick={async () => {
-                const url = `http://192.168.1.156:8008/api/tasks/${params.id}`
-                const res = await axios.delete(
-                  url
-                );
+                const res = await deleteTask(params.id);
                 navigate('/')
 
 
