@@ -6,28 +6,24 @@ import axios from "axios"
 
 function HomePage() {
     const [tasks, setTasks] = useState([]);
-    const url = "http://192.168.1.156:8008/api/tasks"
+    const [firstLoad,setFirtsLoad] = useState(true)
 
-    const fetchTasks = useCallback(async () => {
-        const res = await axios.get(url);
-        console.log("res::", res.data)
+    const loadTasks = useCallback(async () => {
+        const res = await fetchTasks();
         setTasks(res.data)
-        console.log("tasks:", tasks)
     }, []);
-    console.log("tasks2:", tasks)
 
     let contentTasks = <p>No data..</p>;
     if (tasks.length > 0) {
         contentTasks = <TaskList tasks={tasks} />
+    }else if (firstLoad){
+        setFirtsLoad(false)
+        loadTasks()
     }
-
-
-
-
+    
     return (
         <>
             <h1>Tasks</h1>
-            <button onClick={fetchTasks}>search</button>
             <div>
                 {contentTasks}
             </div>
